@@ -1,0 +1,32 @@
+# Maven build output
+target/
+*.jar
+*.war
+*.class
+dependency-reduced-pom.xml
+
+# Maven internals
+.mvn/
+mvnw
+mvnw.cmd
+
+# IDE: IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# IDE: Eclipse / VS Code
+.classpath
+.project
+.settings/
+.factorypath
+.vscode/
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Logs / local debug artefacts
+*.log
+/tmp/
