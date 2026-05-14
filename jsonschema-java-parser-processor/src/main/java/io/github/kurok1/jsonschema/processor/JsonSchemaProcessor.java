@@ -3,6 +3,7 @@ package io.github.kurok1.jsonschema.processor;
 import io.github.kurok1.jsonschema.annotations.JsonSchema;
 import io.github.kurok1.jsonschema.core.json.JsonWriter;
 import io.github.kurok1.jsonschema.core.model.SchemaDocument;
+import io.github.kurok1.jsonschema.processor.mapper.BuiltinMappers;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
@@ -94,17 +95,8 @@ public final class JsonSchemaProcessor extends AbstractProcessor {
         boolean includeJsr303 = parseBoolean(env.getOptions().get(OPT_INCLUDE_JSR303), true);
         boolean includeNullness = parseBoolean(env.getOptions().get(OPT_INCLUDE_NULLNESS), true);
 
-        List<AnnotationMapper> chain = new ArrayList<>();
-        chain.add(new JsonSchemaSelfMapper());
-        if (includeJackson) {
-            chain.add(new JacksonMapper(elements));
-        }
-        if (includeJsr303) {
-            chain.add(new ValidationMapper(elements));
-        }
-        if (includeNullness) {
-            chain.add(new NullnessMapper());
-        }
+        List<AnnotationMapper> chain = BuiltinMappers.create(
+                elements, includeJackson, includeJsr303, includeNullness);
         try {
             for (AnnotationMapper extension :
                     ServiceLoader.load(AnnotationMapper.class, getClass().getClassLoader())) {

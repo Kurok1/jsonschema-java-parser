@@ -1,4 +1,8 @@
-package io.github.kurok1.jsonschema.processor;
+package io.github.kurok1.jsonschema.processor.mapper;
+
+import io.github.kurok1.jsonschema.processor.AnnotationMapper;
+import io.github.kurok1.jsonschema.processor.Annotations;
+import io.github.kurok1.jsonschema.processor.FieldContext;
 
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.VariableElement;

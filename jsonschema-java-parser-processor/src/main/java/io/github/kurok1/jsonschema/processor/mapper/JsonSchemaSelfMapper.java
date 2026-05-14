@@ -1,7 +1,9 @@
-package io.github.kurok1.jsonschema.processor;
+package io.github.kurok1.jsonschema.processor.mapper;
 
 import io.github.kurok1.jsonschema.annotations.JsonSchemaIgnore;
 import io.github.kurok1.jsonschema.annotations.JsonSchemaProperty;
+import io.github.kurok1.jsonschema.processor.AnnotationMapper;
+import io.github.kurok1.jsonschema.processor.FieldContext;
 
 import javax.lang.model.element.VariableElement;
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ final class JsonSchemaSelfMapper implements AnnotationMapper {
             ctx.builder().defaultValue(meta.defaultValue());
         }
         if (meta.examples().length > 0) {
-            List<Object> examples = new ArrayList<>(meta.examples().length);
+            List<Object> examples = new ArrayList<Object>(meta.examples().length);
             for (String example : meta.examples()) {
                 examples.add(example);
             }
